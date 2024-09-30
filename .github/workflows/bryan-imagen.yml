@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Build Docker Image
         run: docker build -t myusername/my-python-app .
@@ -21,4 +21,3 @@ jobs:
 
       - name: Push Docker Image
         run: docker push myusername/my-python-app
-
