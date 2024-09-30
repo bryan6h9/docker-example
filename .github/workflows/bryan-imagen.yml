@@ -1,4 +1,4 @@
-name: Flask Docker CI
+name: Build and Push Python Image
 
 on:
   push:
@@ -13,21 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install flask
-
       - name: Build Docker Image
-        run: docker build -t myusername/flask-app .
+        run: docker build -t myusername/my-python-image .
 
       - name: Login to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       - name: Push Docker Image
-        run: docker push myusername/flask-app
+        run: docker push myusername/my-python-image
